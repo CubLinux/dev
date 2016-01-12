@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg7384" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="16" width="16" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata90">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>Gnome Symbolic Icon Theme</dc:title>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <title id="title9167">Gnome Symbolic Icon Theme</title>
+ <g id="layer12" transform="translate(379,-487)">
+  <path id="rect42761-1" style="block-progression:tb;text-indent:0;color:#bebebe;text-transform:none;fill:#bebebe" d="m-375.81 487c-1.2016 0-2.1875 0.98758-2.1875 2.1875v7.625c0 1.1999 0.9859 2.1875 2.1875 2.1875h6.625c1.2016 0 2.1875-0.98758 2.1875-2.1875v-7.625c0-1.1999-0.9859-2.1875-2.1875-2.1875h-6.625zm0 2h6.625c0.1238 0 0.1875 0.0566 0.1875 0.1875v7.625c0 0.1309-0.0637 0.1875-0.1875 0.1875h-6.625c-0.1238 0-0.1875-0.0566-0.1875-0.1875v-7.625c0-0.1309 0.0637-0.1875 0.1875-0.1875z"/>
+  <path id="path12971-61" style="color:#000000;fill:#bebebe" d="m-372.66 490c-1.1609 0.0659-2.1378 0.92958-2.3125 2.125-0.19965 1.3662 0.72755 2.6441 2.0938 2.8438l0.28125-1.7812c-0.34213-0.0475-0.625-0.3323-0.625-0.6875 0-0.38832 0.33042-0.6875 0.71875-0.6875s0.71875 0.29918 0.71875 0.6875c0 0.0537-0.0199 0.10602-0.0312 0.15625l1.75 0.40625c0.0141-0.0625 0.022-0.12411 0.0312-0.1875 0.19965-1.3662-0.72755-2.6441-2.0938-2.8438-0.17077-0.025-0.3654-0.0407-0.53125-0.0312z"/>
+  <path id="path42767-6-9" style="color:#000000;fill:#bebebe" d="m-372.09 493.01 0.83646 2.4096c0.45867 1.2385 1.874 0.23152 0.93488-0.60242z"/>
+  <path id="rect42761-1-8" style="block-progression:tb;text-indent:0;color:#bebebe;text-transform:none;fill:#bebebe" d="m-366 491v2.1875 6.8125 0.8125c0 0.1309-0.0637 0.1875-0.1875 0.1875h-6.625c-0.1238 0-0.1875-0.0566-0.1875-0.1875v-0.8125h-2v0.8125c0 1.1999 0.9859 2.1875 2.1875 2.1875h6.625c1.2016 0 2.1875-0.98758 2.1875-2.1875v-7.625c0-1.136-0.88628-2.0899-2-2.1875z"/>
+ </g>
+</svg>

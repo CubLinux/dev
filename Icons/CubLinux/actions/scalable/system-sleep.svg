@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg7384"
+   height="16"
+   width="16"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="user-invisible-symbolic.svg">
+  <defs
+     id="defs9" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="695"
+     id="namedview7"
+     showgrid="false"
+     inkscape:zoom="4.8648947"
+     inkscape:cx="34.572299"
+     inkscape:cy="19.752847"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg7384" />
+  <metadata
+     id="metadata90">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Gnome Symbolic Icon Theme</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <title
+     id="title9167">Gnome Symbolic Icon Theme</title>
+  <g
+     id="layer9"
+     transform="translate(-101,-357)"
+     style="fill:#505050;fill-opacity:1">
+    <path
+       id="path12148"
+       style="block-progression:tb;text-indent:0;color:#bebebe;text-transform:none;fill:#505050;fill-opacity:1"
+       d="m104.75 357.06c-2.0602 0-3.75 1.6898-3.75 3.75v4.4375c0 2.0602 1.6898 3.75 3.75 3.75h4.9375l3.75 2.6562 1.5938 1.125v-1.9688l-0.0313-2.5c1.1106-0.59715 1.9688-1.6526 1.9688-3.0625v-4.4375c0-2.0602-1.6898-3.75-3.75-3.75h-8.4688zm0 2h8.4688c0.9868 0 1.75 0.7632 1.75 1.75v4.4375c0 0.86273-0.63508 1.541-1.125 1.625l-0.84 0.12v0.84375 1.0312l-2.4062-1.6875-0.25-0.1875h-0.3125-5.2812c-0.9868 0-1.75-0.7632-1.75-1.75v-4.4375c0-0.9868 0.7632-1.75 1.75-1.75z" />
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-size:34.92835235999999810px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#505050;fill-opacity:1;stroke:none;font-family:Sans"
+     x="2.8749106"
+     y="7.2583838"
+     id="text3754"
+     sodipodi:linespacing="125%"
+     transform="scale(0.87320884,1.1452014)"><tspan
+       sodipodi:role="line"
+       id="tspan3756"
+       x="2.8749106"
+       y="7.2583838"
+       style="font-size:8.73208808999999953px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu Medium;fill:#505050;fill-opacity:1">zzz</tspan></text>
+</svg>

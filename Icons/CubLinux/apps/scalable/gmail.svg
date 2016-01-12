@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   viewBox="0 0 512 512"
+   id="svg5052"
+   inkscape:version="0.48.4 r9939"
+   width="100%"
+   height="100%"
+   sodipodi:docname="gmail.svg">
+  <metadata
+     id="metadata5072">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs5070" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="695"
+     id="namedview5068"
+     showgrid="false"
+     inkscape:zoom="0.73952369"
+     inkscape:cx="572.52727"
+     inkscape:cy="271.12917"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5052" />
+  <g
+     id="g5054"
+     transform="matrix(0.01043106,0,0,0.01056382,18.406531,81.184625)">
+    <path
+       d="m 41608,250 c 2030,0 3691,1661 3691,3691 l 0,1070 L 40171,8674 22713,20700 5255,8552 l 0,24295 -1314,0 C 1911,32847 250,31186 250,29156 L 250,3942 C 250,1912 1911,251 3941,251 L 22713,14169 41607,251 z"
+       id="path5056"
+       inkscape:connector-curvature="0"
+       style="fill:#e75a4d" />
+    <polygon
+       points="40172,32847 40172,8674 22713,20700 5255,8552 5255,32847 "
+       id="polygon5058"
+       style="fill:#e7e4d7" />
+    <polygon
+       points="5255,32580 5255,32847 22713,20700 22634,20644 "
+       id="polygon5060"
+       style="fill:#b8b7ae" />
+    <polygon
+       points="40172,8674 40182,32847 22713,20700 "
+       id="polygon5062"
+       style="fill:#b7b6ad" />
+    <path
+       d="m 45299,5011 6,24148 c -88,2684 -1251,3642 -5123,3687 l -10,-24173 5128,-3663 z"
+       id="path5064"
+       inkscape:connector-curvature="0"
+       style="fill:#b2392f" />
+    <polygon
+       points="3941,250 22713,14168 41608,250 "
+       id="polygon5066"
+       style="fill:#f7f5ed" />
+  </g>
+</svg>

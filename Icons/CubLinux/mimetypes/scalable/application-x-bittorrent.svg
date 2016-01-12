@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="512"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="application-x-bittorrent.svg"
+   inkscape:export-filename="/home/richjack/Pictures/Icons by type/Mimetypes/application-x-bittorrent.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3927">
+      <stop
+         style="stop-color:#fffff7;stop-opacity:1;"
+         offset="0"
+         id="stop3929" />
+      <stop
+         style="stop-color:#2c5e10;stop-opacity:0;"
+         offset="1"
+         id="stop3931" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.9"
+     inkscape:cx="-160.08146"
+     inkscape:cy="237.55881"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:showpageshadow="false"
+     borderlayer="true"
+     inkscape:window-width="1366"
+     inkscape:window-height="695"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-540.3622)">
+    <g
+       id="g2990"
+       transform="matrix(12.654533,0,0,12.740872,52.3859,-12408.019)">
+      <rect
+         ry="2.0710282"
+         y="1020.486"
+         x="0.088039666"
+         height="31.787464"
+         width="31.877493"
+         id="rect3147"
+         style="fill:#0fa913;fill-opacity:1;stroke:none" />
+      <g
+         transform="matrix(1.2976203,0,0,1.3441227,-3.8617462,-356.16447)"
+         id="g3960">
+        <path
+           style="opacity:0.5;color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="path3764-3"
+           inkscape:connector-curvature="0"
+           d="m 13.880781,1025.4057 c -5.818225,0 -10.534828,4.7166 -10.534828,10.5348 0,5.8183 4.716603,10.5349 10.534828,10.5349 l 13.826961,0 0,-1.9753 -13.826961,0 c -4.727308,0 -8.559548,-3.8323 -8.559548,-8.5596 0,-4.7273 3.83224,-8.5595 8.559548,-8.5595 l 0,-1.9753 z" />
+        <path
+           style="opacity:0.75;color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="path3760-0"
+           inkscape:connector-curvature="0"
+           d="m 13.880781,1028.0394 c -4.363669,0 -7.901121,3.5375 -7.901121,7.9011 0,4.3637 3.537452,7.9012 7.901121,7.9012 l 13.826961,0 0,-1.9753 -13.826961,0 c -3.272752,0 -5.925841,-2.6531 -5.925841,-5.9259 0,-3.2727 2.653089,-5.9258 5.925841,-5.9258 0.795216,0 1.549889,0.1583 2.242766,0.4424 l 0.751018,-1.8313 c -0.950667,-0.3895 -1.966419,-0.5864 -2.993784,-0.5864 z" />
+        <path
+           style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="path3756-4"
+           inkscape:connector-curvature="0"
+           d="m 13.880781,1030.6731 c -2.909113,0 -5.267414,2.3583 -5.267414,5.2674 0,2.9092 2.358301,5.2675 5.267414,5.2675 l 13.826961,0 0,-1.9753 -13.826961,0 c -1.818195,0 -3.292134,-1.474 -3.292134,-3.2922 0,-1.8182 1.473939,-3.2921 3.292134,-3.2921 0.909097,0 1.72931,0.3713 2.325069,0.9671 l 1.399157,-1.3992 c -0.987832,-0.9878 -2.327221,-1.5432 -3.724226,-1.5432 z" />
+      </g>
+    </g>
+  </g>
+</svg>

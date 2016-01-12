@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg7384" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="16" width="16" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata90">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>Gnome Symbolic Icon Theme</dc:title>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <title id="title9167">Gnome Symbolic Icon Theme</title>
+ <g id="layer12" transform="translate(-180.97 -807)">
+  <path id="path4640" style="block-progression:tb;text-indent:0;color:#000000;text-transform:none;fill:#bebebe" d="m188.48 808.06c-3.5729 0-6.4904 2.9142-6.4904 6.4829s2.9176 6.4829 6.4904 6.4829c3.5729 0 6.4904-2.9142 6.4904-6.4829s-2.9176-6.4829-6.4904-6.4829zm0 1.997c2.4922 0 4.4912 1.9966 4.4912 4.4859 0 2.4894-1.9989 4.4859-4.4912 4.4859-2.4922 0-4.4911-1.9966-4.4911-4.4859 0-2.4894 1.9989-4.4859 4.4911-4.4859z"/>
+  <path id="path4644" style="block-progression:tb;text-indent:0;color:#000000;enable-background:new;text-transform:none;fill:#bebebe" d="m191.41 813.98a0.50306 0.50389 0 1 0 0.12479 1h3.931a0.49923 0.50005 0 1 0 0 -1h-3.931a0.49923 0.50005 0 0 0 -0.12479 0z"/>
+  <path id="path5416" style="block-progression:tb;text-indent:0;color:#000000;enable-background:new;text-transform:none;fill:#bebebe" d="m181.43 814.01a0.50136 0.50219 0 1 0 0.0935 1h3.9622a0.49923 0.50005 0 1 0 0 -1h-3.9622a0.49923 0.50005 0 0 0 -0.0935 0z"/>
+  <path id="path5420" style="block-progression:tb;text-indent:0;color:#000000;enable-background:new;text-transform:none;fill:#bebebe" d="m188.39 807.01a0.49923 0.50005 0 0 0 -0.40558 0.5v4.0312a0.49923 0.50005 0 1 0 0.99835 0v-4.0312a0.49923 0.50005 0 0 0 -0.59277 -0.5z"/>
+  <path id="path5422" style="block-progression:tb;text-indent:0;color:#000000;enable-background:new;text-transform:none;fill:#bebebe" d="m188.42 817.04a0.49923 0.50005 0 0 0 -0.43678 0.53125v3.9375a0.49923 0.50005 0 1 0 0.99835 0v-3.9375a0.49923 0.50005 0 0 0 -0.56157 -0.53125z"/>
+  <path id="path5428" style="color:#000000;enable-background:new;fill:#bebebe" d="m-91 478a1 1 0 1 1 -2 0 1 1 0 1 1 2 0z" transform="matrix(1.4975 0 0 1.5 326.25 97.509)"/>
+ </g>
+</svg>
