@@ -1,0 +1,14 @@
+#! /bin/bash
+
+action=$(yad --width 300 --title "Log out" --center --on-top --skip-taskbar --window-icon=system-logout \
+    --image=system-logout \
+    --text="  Do you want to close all programs \n  and log out?"
+    )
+ret=$?
+
+[[ $ret -eq 1 ]] && exit 0
+
+if [[ $ret -eq 0 ]]; then
+    killb4logout
+    exit 0
+fi

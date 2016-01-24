@@ -1,0 +1,36 @@
+#! /bin/bash
+
+loggedin=$(dm-tool list-seats | grep -c Session)
+
+if [[ $loggedin -gt 1 ]]; then
+   _text="Information: there are currently $loggedin users logged in.\nShutting down will cause users to loose unsaved work..."
+   else
+   _text="Choose action:"
+fi
+
+action=$(yad --width 300 --entry --title "System shutdown" --center --on-top --skip-taskbar --window-icon=gnome-shutdown --timeout=30 --undecorated \
+    --image=system-shutdown \
+    --button="Switch User:2" \
+    --button="gtk-ok:0" --button="gtk-cancel:1" \
+    --text "$_text" \
+    --entry-text \
+    "Power Off" "Reboot" "Sleep" "Hibernate" "Logout")
+ret=$?
+
+[[ $ret -eq 1 ]] && exit 0
+
+if [[ $ret -eq 2 ]]; then
+    dm-tool switch-to-greeter &
+    exit 0
+fi
+
+case $action in
+    Power*) cmd='dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop' ;;
+    Reboot*) cmd='dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart' ;;
+    Sleep*) cmd='dm-tool lock & dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Suspend' ;;
+    Hibernate*) cmd='dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Hibernate' ;;
+    Logout*) cmd="killb4logout" ;;
+    *) exit 1 ;;        
+esac
+
+eval exec $cmd

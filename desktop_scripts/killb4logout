@@ -1,0 +1,21 @@
+#! /bin/bash
+
+# Gracefully close Chrome-ium and nautilus
+pgrep chrom | xargs kill -15
+pgrep nautilus | xargs kill -15
+
+#Close all open windows
+ while read -r app; do
+    wmctrl -i -c "$app"
+  done < <(wmctrl -l | awk '{print $1}')
+
+# Get all user processes
+allproc=$(pgrep -u $(whoami))
+obpid=$(pgrep -x "openbox")
+killproc=$(echo $allproc | sed "s/\b$obpid\b//g")
+for i in $killproc; do
+   pkill -15 $i
+done
+
+# Finally exit openbox which sigkills everything else
+openbox --exit

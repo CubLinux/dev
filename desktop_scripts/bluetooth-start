@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# First start up the Bluetooth tray icon
+blueman-applet
+
+# Wait for Bluetooth to be detected
+sleep 5
+
+# Load the Pulse Audio Blueooth discovery module for bluetooth sound devices
+pactl load-module module-bluetooth-discover

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+loginid="$USER"
+
+ICON=$HOME/.face
+RBT='dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart'
+SUS='dm-tool lock & dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Suspend'
+HIB='dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Hibernate'
+SWI="dm-tool switch-to-greeter"
+SHUT="yad-shutdown"
+
+# (a) create fifo pipe
+PIPE=$(mktemp -u --tmpdir ${0##*/}.XXXXXXXX)
+mkfifo $PIPE
+
+# (b) attach a filedescriptor to this pipe
+exec 3<> $PIPE
+
+# (c) create YAD notifier to listen to stdin
+yad --notification --listen --text="Shutdown or logout $loginid..." --title="avatar-logout" --command="yad-shutdown" \
+--menu="Change Avatar!mugshot!mugshot|Switch user!$SWI!switch-user|Lock Screen!light-locker-command -l!gnome-lock-screen|Sleep!$SUS!system-sleep|Hibernate!$HIB!system-hibernate|Shutdown!$SHUT!system-shutdown-panel" <&3 &
+
+# (d) infinite loop to check for a change in avatar icon and send to YAD
+for (( ; ; ))
+do
+   echo "icon:$ICON" >&3
+   sleep 5
+done
