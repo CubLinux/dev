@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=chromixium-input
+Name=Keyboard, mouse & touchpad settings
+Comment=Configure the keyboard, mouse, and touchpad
+Icon=input-mouse
+StartupWMClass=chromixium-input
+Categories=GTK;Settings;HardwareSettings;
+

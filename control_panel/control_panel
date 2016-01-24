@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Simple Control Panel for Cub Linux
+
+yad --icons --read-dir="/usr/local/share/Control Panel" --width=700 --height=580 --sort-by-name --single-click \
+--window-icon=preferences-desktop --image=preferences-desktop --image-on-top --center \
+--title="Cub Control Panel" --text='<span font_weight="bold">Change desktop, system and device settings</span>\nSome utilities require the administrator password.' --button=gtk-close --class=control_panel --name=control_panel --item-width=100

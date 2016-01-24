@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=gksu -D "Automatic Updates" unattended-upgrades-gui
+Name=Automatic Updates
+Categories=GTK;GNOME;Settings;
+StartupWMClass=unattended-upgrades-gui
+Icon=system-software-update
+Comment=Change when and how automatic updates happen

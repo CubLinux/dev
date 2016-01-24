@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Printers
+Comment=Add, remove and configure printers
+Exec=system-config-printer
+Terminal=false
+Type=Application
+Icon=printer
+StartupNotify=true
+Categories=GTK;GNOME;Settings;HardwareSettings;

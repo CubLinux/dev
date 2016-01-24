@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=plank-gui
+Name=Dock settings
+Categories=GTK;GNOME;Settings;
+Icon=plank
+StartupWMClass=plank-gui
+Comment=Change the Plank dock settings

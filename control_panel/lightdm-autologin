@@ -1,0 +1,41 @@
+#!/bin/bash
+# Simple script to enable autologin in lightdm
+# Copyright (C) RichJack 2015
+# Free to distribute under the terms of the GPL v3.
+
+# Check running as root
+if [[ $EUID -ne 0 ]]; then
+   yad --title="Automatic Login" --text="\n   To configure automatic login, please run as root" --button="gtk-quit:1" \
+   --window-icon=extension --image=changes-prevent  --width=300
+   exit 1
+fi
+
+USERSNAMES=$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd)
+
+autologin=$(yad --width 300 --entry --title "Autologin" --center --on-top --window-icon=switch-user --class=lightdm-autologon --name=lightdm-autologin \
+    --image=switch-user \
+    --button="Disable autologin:2" \
+    --button="Enable autologin:0" --button="gtk-cancel:1" \
+    --text "Choose user to autologin:" \
+    --entry-text $USERSNAMES)
+ret=$?
+
+[[ $ret -eq 1 ]] && exit 0
+
+if [[ $ret -eq 2 ]]; then
+    echo "[SeatDefaults]
+#autologin-user=" > /etc/lightdm/lightdm.conf.d/10-cub.conf
+    if [ -f /etc/lightdm/lightdm.conf ]; then
+ 	mv /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
+    fi
+    exit 0
+fi
+
+if [[ -n $autologin ]]; then
+    echo "[SeatDefaults]
+autologin-user=$autologin" > /etc/lightdm/lightdm.conf.d/10-cub.conf
+    if [ -f /etc/lightdm/lightdm.conf ]; then
+ 	mv /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
+    fi
+    exit 0
+fi

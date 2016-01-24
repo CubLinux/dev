@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=gksu -D "Restricted Extras" restricted-extras
+Name=Install Restricted Extras
+Categories=GTK;GNOME;AudioVideo;
+Icon=extension
+StartupWMClass=restricted-extras
+Comment=Install restricted extras such as codecs, DVD encrypted playback and fonts.

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Comment=Connect to the Internet using a Modem
+Exec=gnome-ppp
+Icon=gnome-ppp
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Settings;
+Name=Modem Settings

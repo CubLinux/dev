@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Exec=gksu -D "Automatic Login" lightdm-autologin
+Name=Configure Automatic Login
+Categories=GTK;GNOME;Settings;
+Icon=switch-user
+Comment=Configure a user to login automatically

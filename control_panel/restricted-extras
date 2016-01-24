@@ -1,0 +1,57 @@
+#!/bin/bash
+# Little helper script to install Ubuntu Restricted Extras and libdvdcss2 in Chromixium OS
+# Doesn't bother installing FlashPlayer as it only works for Mozilla browsers.
+# Doesn't install MS fonts as we are using Chrome fonts in Chromixium
+# Copyright (C) RichJack 2015
+# Free to distribute under the terms of the GPL v3.
+
+# Check running as root
+if [[ $EUID -ne 0 ]]; then
+   yad --title="Ubuntu Restricted Extras" --text="\n   To install Ubuntu Restricted Extras, please run as root" --button="gtk-quit:1" \
+   --window-icon=extension --image=changes-prevent  --width=300
+   exit 1
+fi
+
+yad --title="Ubuntu Restricted Extras" --text='<span font_weight="bold">Commonly used restricted packages for Ubuntu</span>\n\nInstalling this package will pull in support for MP3 playback and decoding, support for various other audio formats (GStreamer plugins), LAME (to create compressed audio files), and DVD playback.\n\nPlease note that this installs libdvdcss2 to let you play
+encrypted DVDs. Legal warning: Check with your local laws to make sure usage of libdvdcss2 would be legal in your area.\n\nPlease also note that these packages from the Ubuntu multiverse repository are restricted by copyright or legal issues in some countries. See <a href="http://www.ubuntu.com/ubuntu/licensing">http://www.ubuntu.com/ubuntu/licensing</a> for more information.' \
+--width=500 --height=350 --center \
+--window-icon=extension --image=extension --image-on-top \
+--class=restricted-extras --name=restricted-extras \
+--button="gtk-cancel:1" --button="Download and install:0"
+
+ans=$?
+
+if [[ "$ans" != "0" ]]; then
+	exit 1
+fi
+
+{
+echo 5
+echo "#Updating packages list..."
+apt-get update
+echo 30
+echo "#Installing restricted codecs..."
+apt-get install -yqqm unrar gstreamer0.10-plugins-bad-multiverse libavcodec-extra gstreamer0.10-plugins-ugly gstreamer1.0-plugins-ugly gstreamer0.10-plugins-bad gstreamer1.0-plugins-bad gstreamer1.0-libav gstreamer0.10-fluendo-mp3 gstreamer1.0-fluendo-mp3 chromium-codecs-ffmpeg-extra oxideqt-codecs-extra
+echo 70
+echo "#Installing encrypted DVD read support"
+apt-get install -yqqm libdvdread4
+sleep 5
+/usr/share/doc/libdvdread4/install-css.sh
+sleep 3
+echo 90
+echo "#Cleaning up..."
+sleep 2
+# Remove .desktop file as install is complete
+mv -f /usr/local/share/applications/restricted-extras.desktop /usr/local/share/applications/restricted-extras.desktop.installed
+echo 99
+sleep 1
+} | yad --title="Ubuntu Restricted Extras" --progress-text="Downloading and installing, please wait..." --progress \
+--auto-close --button=gtk-cancel:1 --width=500 --center --skip-taskbar
+
+yad --title="Ubuntu Restricted Extras" --text='<span font_weight="bold">Installation complete!</span>\n\nFor help with DVD playback, see <a href="https://help.ubuntu.com/community/RestrictedFormats/PlayingDVDs">https://help.ubuntu.com/community/RestrictedFormats/PlayingDVDs</a> for more information.' \
+--width=500 --height=150 --center \
+--window-icon=extension --image=extension --image-on-top \
+--class=restricted-extras --name=restricted-extras \
+--button="gtk-close:0"
+
+exit 0

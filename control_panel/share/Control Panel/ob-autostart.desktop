@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Startup Applications
+Comment=Choose what applications to start when you log in
+Exec=ob-autostart
+Icon=session-properties
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GTK;GNOME;Settings;X-GNOME-PersonalSettings;

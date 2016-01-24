@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Keyboard Shortcuts
+GenericName=Obkey
+Comment=Edit and set desktop keyboard shortcuts
+Icon=obkey
+Exec=obkey
+Terminal=false
+Type=Application
+Categories=Settings;DesktopSettings;

@@ -1,0 +1,284 @@
+#!/bin/bash
+
+# Simple GUI for Unattended Upgrades in Chromixium OS
+# No email facility is supported because this isn't for server scenarios
+# Since software-properties-common-gtk doesn't seem to cut the mustard
+# And update notifier brings in too many dependencies
+
+# Check running as root
+if [[ $EUID -ne 0 ]]; then
+   yad --title="Automatic Update Settings" --text="\n   This script must be run as root" --button="gtk-quit:1" \
+   --window-icon=system-software-update --image=changes-prevent  --width=300
+   exit 1
+fi
+
+# Check for presence of these packages: unattended-upgrades, apt-listchanges
+
+uuinstalled=$(dpkg-query -W -f='${Status}' unattended-upgrades 2>/dev/null | grep -c "ok installed")
+alcinstalled=$(dpkg-query -W -f='${Status}' apt-listchanges 2>/dev/null | grep -c "ok installed")
+installstatus=$(($uuinstalled + $alcinstalled))
+
+if [ $installstatus -ne 2 ]; then
+	( sudo apt-get update
+	if [ $uuinstalled -eq 0 ]; then
+		sudo apt-get --force-yes --yes install unattended-upgrades
+	fi
+	if [ $alcinstalled -eq 0 ]; then
+		sudo apt-get --force-yes --yes install apt-listchanges
+	fi ) | yad --progress --pulsate --auto-close --title="Automatic Upgrades" --text="Installing prerequisites, please wait..." --auto-kill \
+	--window-icon=system-software-update --image=system-software-update --button="gtk-cancel:1"
+fi
+
+# Check for presence of necessary apt files and if not create them
+# Create them using preformatted versions
+# Bearing in mind that these will be correctly formatted already at least on Chromixium
+
+if [[ ! -f /etc/apt/apt.conf.d/10periodic ]]; then
+	sudo cp -f /usr/local/share/unattended-upgrades-gui/10periodic /etc/apt/apt.conf.d/
+fi
+if [[ ! -f /etc/apt/apt.conf.d/20auto-upgrades ]]; then
+	sudo cp -f /usr/local/share/unattended-upgrades-gui/20auto-upgrades /etc/apt/apt.conf.d/
+fi
+if [[ ! -f /etc/apt/apt.conf.d/50unattended-upgrades ]]; then
+	sudo cp -f /usr/local/share/unattended-upgrades-gui/50unattended-upgrades /etc/apt/apt.conf.d/
+fi
+
+# Paths
+uu=/etc/apt/apt.conf.d/50unattended-upgrades
+pu=/etc/apt/apt.conf.d/10periodic
+au=/etc/apt/apt.conf.d/20auto-upgrades
+
+# Update frequency
+frequency=$(grep "Unattended-Upgrade" $au| awk -F'\"' '{print $2}')
+case $frequency in
+	1) YadFrequency="Daily!Weekly!Fortnightly!Monthly!Quarterly!Never" ;;
+	7) YadFrequency="Weekly!Daily!Fortnightly!Monthly!Quarterly!Never" ;;
+	14) YadFrequency="Fortnightly!Daily!Weekly!Monthly!Quarterly!Never" ;;
+	28) YadFrequency="Monthly!Daily!Weekly!Fortnightly!Quarterly!Never" ;;
+	84) YadFrequency="Quarterly!Daily!Weekly!Fortnightly!Monthly!Never" ;;
+	0) YadFrequency="Never!Daily!Weekly!Fortnightly!Monthly!Quarterly" ;; 
+	*) YadFrequency="Daily!Weekly!Fortnightly!Monthly!Quarterly!Never" ;;
+esac
+	
+
+# Repositories
+security=$(grep "Ubuntu trusty-security" $uu| awk -F"\/\/" '{print $1}')
+bugfix=$(grep "Ubuntu trusty-updates" $uu | awk -F"\/\/" '{print $1}')
+proposed=$(grep "Ubuntu trusty-proposed" $uu | awk -F"\/\/" '{print $1}')
+backports=$(grep "Ubuntu trusty-backports" $uu | awk -F"\/\/" '{print $1}')
+
+# Check which repositories are already enabled for unattended-upgrades and assign to a variable
+
+if [[ -z "$security" ]]; then
+	SecurityOn=false
+else
+	SecurityOn=true
+fi
+if [[ -z "$bugfix" ]]; then
+	BugFixOn=false
+else
+	BugFixOn=true
+fi
+if [[ -z "$proposed" ]]; then
+	ProposedOn=false
+else
+	ProposedOn=true
+fi
+if [[ -z "$backports" ]]; then
+	BackportsOn=false
+else
+	BackportsOn=true
+fi
+
+# Remaining switches
+# AutoFixInterruptedDpkg=$(grep "AutoFixInterruptedDpkg" $uu | awk -F'\"' '{print $2}') # Leave it on true
+MinimalSteps=$(grep "MinimalSteps" $uu | awk -F'\"' '{print $2}')
+InstallOnShutdown=$(grep "InstallOnShutdown" $uu | awk -F'\"' '{print $2}')
+RemoveUnusedDependencies=$(grep "Remove-Unused-Dependencies" $uu | awk -F'\"' '{print $2}')
+# AutomaticReboot=$(grep "Automatic-Reboot" $uu | awk -F'\"' '{print $2}') # Leave disabled, it's just stupid!
+# AutomaticRebootTime=$(grep "Automatic-Reboot-Time" $uu | awk -F'\"' '{print $2}') # Leave disabled, it's just stupid!
+DlLimit=$(grep "Dl-Limit" $uu | awk -F'\"' '{print $2}')
+DlLimitOn=$(grep "Dl-Limit" $uu | awk -F"\/\/" '{print $1}')
+if [[ -z "$DlLimitOn" ]]; then
+	DlLimitOn=false
+else
+	DlLimitOn=true
+fi
+
+# Functions
+function restoredefaults(){
+	yad --title="Automatic Updates Settings" --text='<span font_weight="bold">Restore Automatic Updates Settings To First Run</span>\n\nAre you sure you want to restore the settings for automatic (unattended) updates?' \
+--center --window-icon=system-software-update --image=system-software-update \
+--image-on-top --button="gtk-cancel:1" --button="gtk-ok:0"
+if [$? == 1]; then
+	unattended-upgrades-gui
+else
+	sudo cp -f /usr/local/share/unattended-upgrades-gui/10periodic /etc/apt/apt.conf.d/
+	sudo cp -f /usr/local/share/unattended-upgrades-gui/50unattended-upgrades /etc/apt/apt.conf.d/
+	unattended-upgrades-gui
+fi
+}
+
+function viewlog(){
+	cat /var/log/unattended-upgrades/unattended-upgrades.log | yad --text-info --title="Automatic Upgrades Log File" \
+	--window-icon=system-software-update --text="<b>This log file shows recent automatic (<i>unattended</i>) upgrade activty</b>" \
+	--width 600 --height 480 --center --button=Finish:0
+}
+
+function updatenow(){
+	yad --title="Automatic Update Settings" --text='<span font_weight="bold">Update System Now</span>\n\nAre you sure you want to update your system now? The system will be updated with the choices listed on the previous screen.' \
+--center --window-icon=system-software-update --image=system-software-update \
+--image-on-top --button="gtk-cancel:1" --button="gtk-ok:0"
+if [$? == 1]; then
+	unattended-upgrades-gui
+else
+	xterm -hold -e "apt-get update && unattended-upgrades -d"
+	unattended-upgrades-gui
+fi
+}
+
+function savechanges(){
+#Remove files saved by software-properties-gtk
+rm -f /etc/apt/sources.list.d/trusty-proposed.list.save
+rm -f /etc/apt/sources.list.d/trusty-backports.list.save
+#Update frequency
+NewFrequency=$(echo $settings | awk -F"|" '{print $3}')
+case $NewFrequency in
+	Daily) FrequencyDigit=1 ;;
+	Weekly) FrequencyDigit=7 ;;
+	Fortnightly) FrequencyDigit=14 ;;
+	Monthly) FrequencyDigit=28 ;;
+	Quarterly) FrequencyDigit=84 ;;
+	Never) FrequencyDigit=0 ;; 
+	*) FrequencyDigit=0 ;;
+esac
+sudo sed -i "/Unattended-Upgrade/c\APT\:\:Periodic\:\:Unattended-Upgrade \"$FrequencyDigit\"\;" $pu
+sudo sed -i "/Unattended-Upgrade/c\APT\:\:Periodic\:\:Unattended-Upgrade \"$FrequencyDigit\"\;" $au
+#50unattended-upgrades
+if [[ $(echo $settings | awk -F"|" '{print $6}') == "TRUE" ]]; then
+	NewSecurity='"Ubuntu trusty-security";'
+else
+	NewSecurity='// "Ubuntu trusty-security";'
+fi
+if [[ $(echo $settings | awk -F"|" '{print $7}') == "TRUE" ]]; then
+	NewBugFix='"Ubuntu trusty-updates";'
+else
+	NewBugFix='// "Ubuntu trusty-updates";'
+fi
+if [[ $(echo $settings | awk -F"|" '{print $8}') == "TRUE" ]]; then
+	NewProposed='"Ubuntu trusty-proposed";'
+	echo "deb http://archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse" > /etc/apt/sources.list.d/trusty-proposed.list
+else
+	NewProposed='// "Ubuntu trusty-proposed";'
+	echo "# deb http://archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse" > /etc/apt/sources.list.d/trusty-proposed.list
+fi
+if [[ $(echo $settings | awk -F"|" '{print $9}') == "TRUE" ]]; then
+	NewBackports='"Ubuntu trusty-backports";'
+	echo "deb http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse" > /etc/apt/sources.list.d/trusty-backports.list
+else
+	NewBackports='// "Ubuntu trusty-backports";'
+	echo "# deb http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse" > /etc/apt/sources.list.d/trusty-backports.list
+fi
+if [[ $(echo $settings | awk -F"|" '{print $12}') == "TRUE" ]]; then
+	NewMinimalSteps='Unattended-Upgrade::MinimalSteps "true";'
+else
+	NewMinimalSteps='Unattended-Upgrade::MinimalSteps "false";'
+fi
+if [[ $(echo $settings | awk -F"|" '{print $13}') == "TRUE" ]]; then
+	NewInstallOnShutdown='Unattended-Upgrade::InstallOnShutdown "true";'
+else
+	NewInstallOnShutdown='Unattended-Upgrade::InstallOnShutdown "false";'
+fi
+if [[ $(echo $settings | awk -F"|" '{print $14}') == "TRUE" ]]; then
+	NewRemoveUnusedDependencies='Unattended-Upgrade::Remove-Unused-Dependencies "true";'
+else
+	NewRemoveUnusedDependencies='Unattended-Upgrade::Remove-Unused-Dependencies "false";'
+fi
+if [[ $(echo $settings | awk -F"|" '{print $15}') == "TRUE" ]]; then
+	NewDlLimit=$(echo $Settings | awk -F"|" '{print $13}')
+	NewDlLimitOn=$(cat <<EOF
+Acquire::http::Dl-Limit "$NewDlLimit";
+EOF
+)
+else
+	NewDlLimit='//Acquire::http::Dl-Limit "70";'
+fi
+
+# Now recreate the 50unattended-upgrades file
+sudo cat <<EOF > $uu
+// This file was automatically generated by unattended-upgrades-gui
+
+Unattended-Upgrade::Allowed-Origins {
+"Google\, Inc.:stable";
+$NewSecurity
+$NewBugFix
+$NewProposed
+$NewBackports
+};
+
+Unattended-Upgrade::Package-Blacklist {
+};
+
+Unattended-Upgrade::AutoFixInterruptedDpkg "true";
+
+$NewMinimalSteps
+
+$NewInstallOnShutdown
+
+$NewRemoveUnusedDependencies
+
+//Unattended-Upgrade::Automatic-Reboot "false";
+//Unattended-Upgrade::Automatic-Reboot-Time "02:00";
+
+$NewDlLimit
+
+EOF
+unattended-upgrades-gui
+}
+
+settings=$(yad --title="Automatic Update Settings" \
+--text='<span font_weight="bold">   Automatic Update Settings</span>\n   To update from PPAs, do so manually using the Add, Remove &amp; Update Software tool.\n   For more information on software channels, visit:\n   <span font_style="italic">https://help.ubuntu.com/community/Repositories/Ubuntu#Updates_Tab</span>' \
+--form --scroll --width=300 --height=460 --center --selectable-labels \
+--window-icon=system-software-update --image=system-software-update --image-on-top \
+--button="gtk-close:1" --button="Restore Defaults:2" --button="View Log:5" --button="Force Update:6" --button="gtk-apply:0" \
+--field=":LBL" \
+--field="<b>Update Frequency</b>             :LBL" \
+--field="Update frequency:CB" \
+--field=":LBL" \
+--field="<b>Software Update Channels</b>:LBL" \
+--field="Important security updates:CHK" \
+--field="Recommended bug-fix updates:CHK" \
+--field="Pre-release testing updates (Proposed):CHK" \
+--field="New releases and unsupported updates (Backports):CHK" \
+--field=":LBL" \
+--field="<b>Advanced Settings</b>:LBL" \
+--field="Split upgrade into small chunks?:CHK" \
+--field="Install only on shutdown?:CHK" \
+--field="Remove unused dependencies?:CHK" \
+--field="Limit download bandwidth?:CHK" \
+--field="                                 download limit in kbps:NUM" \
+"" "" "$YadFrequency" \
+"" "" "$SecurityOn" "$BugFixOn" "$ProposedOn" "$BackportsOn" \
+"" "" "$MinimalSteps" "$InstallOnShutdown" "$RemoveUnusedDependencies" "$DlLimitOn" "$DlLimit!20..4096" )
+
+# If cancelled then don't do anything, just quit now!
+# Default output:
+#echo $settings
+# ||Daily|||TRUE|FALSE|FALSE|FALSE|||TRUE|FALSE|FALSE|FALSE|70.000000|
+response=$?
+
+case $response in
+	0) savechanges;;
+	1) exit 0 ;;
+	2) restoredefaults ;;
+	5) viewlog ;;
+	6) updatenow ;;
+	252) exit 0 ;;
+	*) exit 1;;
+esac
+
+

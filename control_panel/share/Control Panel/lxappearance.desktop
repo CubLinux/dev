@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Change theme
+Comment=Change icon, mouse and window themes
+Icon=preferences-desktop-theme
+Exec=lxappearance
+StartupNotify=true

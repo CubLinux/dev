@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Bluetooth Manager
+Comment=Switch on Bluetooth and manage devices
+Icon=blueman
+Exec=blueman-manager
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GTK;GNOME;Settings;HardwareSettings;
+X-Ubuntu-Gettext-Domain=blueman

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=System Profiler and Benchmark
+Comment=Lists all system hardware and provides performance benchmarks
+Exec=hardinfo
+Icon=hardinfo
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=System;
+
+Name[en_US]=System Information

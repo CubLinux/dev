@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=nitrogen
+Name=Change wallpaper
+Categories=GTK;GNOME;Settings;
+Icon=nitrogen
+Comment=Browse and set desktop backgrounds
+Keywords=background;desktop;

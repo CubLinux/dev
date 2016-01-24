@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Flash Player
+Comment=Pepper Flash Plugin Details
+Exec=gksu -D "Flash Player" /usr/local/bin/pepper-flash-status
+Icon=pepperflashplayer
+Terminal=false
+Type=Application
+StartupWMClass=pepper-flash-status
+StartupNotify=true
+Categories=GNOME;GTK;Settings;

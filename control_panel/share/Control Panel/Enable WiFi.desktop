@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Enable Networking
+Comment=Switches on your network adapters
+Exec=gksu -D "Enable Networking" /usr/local/bin/enable_wifi
+Icon=preferences-system-network
+Terminal=false
+StartupNotify=false
+Categories=System;hardware
+StartupWMClass=enable_wifi

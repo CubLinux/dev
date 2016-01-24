@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Onscreen Keyboard Settings
+GenericName=Onboard onscreen keyboard settings
+Comment=On-screen keyboard settings
+Exec=onboard-settings
+Terminal=false
+Type=Application
+Categories=Settings;
+#NotShowIn=GNOME;
+#NotShowIn=GNOME;Unity;
+NoDisplay=false
+MimeType=application/x-onboardsettings;
+Icon=onboard
+X-Ubuntu-Gettext-Domain=onboard

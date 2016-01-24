@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=Connect to Server
+TryExec=nautilus-connect-server
+Exec=nautilus-connect-server
+Icon=applications-internet
+Comment=Connect to a server using a known address
+NoDisplay=true
+Terminal=false
+StartupNotify=true
+Type=Application
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=nautilus
+X-GNOME-Bugzilla-Component=general
+X-GNOME-Bugzilla-Version=3.10.1
+X-Ubuntu-Gettext-Domain=nautilus

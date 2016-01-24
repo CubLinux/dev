@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Keyboard Configuration
+Comment=Set System Keyboard Layout
+Type=Application
+Exec=gksu -D "Keyboard Configuration" "dpkg-reconfigure -fgnome keyboard-configuration"
+Terminal=false
+Icon=lxkeymap
+Categories=Settings
+NoDisplay=true

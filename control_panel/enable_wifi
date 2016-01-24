@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# Simple script to enable the wireless or ethernet adapter
+
+yad --title="Activating network adapter(s)..." --center --window-icon=preferences-system-network \
+--class=enable_wifi name=enable_wifi \
+--button=gtk-cancel:1 --button=gtk-ok:0 --image=preferences-system-network \
+--text="If you are having trouble connecting to the network, this script will attempt to activate and switch on all your network adapters.\n\nThen you can use the taskbar icon (Network Manager) to actually join a network. Some laptops have hardware switches to turn the WiFi adapter on/off. Please ensure any such hardware switches are on.\n\nThis may take a few minutes, please be patient!"
+
+if [[ $? == 1 ]]; then
+  exit 1
+fi
+log="/var/log/enable_wifi.log"
+rm -f $log
+
+{
+# TO BEGIN ENABLE ADAPTERS WITH SOFTWARE BLOCK AND START NETWORKING
+echo 5
+rfkill unblock wifi
+rfkill unblock all
+/etc/init.d/networking start
+sleep 3
+echo 15
+# SEARCH FOR HARDWARE
+echo "NETWORK HARDWARE FOUND:" > $log
+echo "" >> $log
+lspci -vv | grep Network >> $log
+echo "" >> $log
+ethernet=$(ifconfig -a | grep eth | awk -F "Link" '{print $1}')
+wifi=$(iw dev | grep Interface | awk -F 'Interface' '{print $2}')
+# BRING ETHERNET UP IF AVAILABLE
+if [ -z $ethernet ];then
+   echo "No ethernet adapters found or able to be activated" >> $log
+else
+   echo "Ethernet adapter device name = $ethernet" >> $log
+   ifconfig $ethernet up
+fi
+echo 30
+sleep 20
+# GET WIRED IP ADDRESS
+echo "Ethernet IP details:" >> $log
+ifconfig $ethernet | grep 'inet addr:' >> $log
+echo "" >> $log
+echo 45
+# BRING UP WIRELESS ADAPTER IF AVAILABLE
+if [ -z $wifi ];then
+   echo "No wireless adapters found or able to be activated" >> $log
+   echo 60
+   sleep 3
+else
+   echo "Wireless adapter device name =$wifi" >> $log
+   ifconfig $wifi up
+   echo "" >> $log
+   sleep 20
+   echo 60
+   # SCAN FOR WIRELESS NETWORKS
+   echo "Scan results for wireless networks on$wifi:" >> $log
+   iw dev $wifi scan | grep SSID >> $log
+   echo 75
+   sleep 5
+fi
+echo 90
+sleep 2
+echo 99
+sleep 1
+} | yad --progress --width 300 --window-icon=preferences-system-network --title="Activating network adapter(s)..." \
+--progress-text="Scanning for networks..." --auto-close --center \
+--class=enable_wifi name=enable_wifi
+
+cat $log | yad --text-info --title="Network devices:" --window-icon=preferences-system-network --image=preferences-system-network \
+--text="These are the results of the network interface scan.\n\nIf you can see your adapters and wireless networks in the list below, then your adapters are correctly configured by the kernel.\n\nPlease use the taskbar icon (Network Manager) to actually join the network. You might need to edit the connections by right-clicking on the taskbar icon." \
+--class=enable_wifi name=enable_wifi \
+--width 640 --height 480 --center --button=Finish:0
+
+exit 0
