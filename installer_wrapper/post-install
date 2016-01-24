@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Simple post-install script to remove installer desktop file
+
+if [ ! -f /usr/bin/ubiquity ]; then
+	rm -f $HOME/Desktop/ubiquity.desktop
+	rm -f $HOME/.config/plank/dock1/launchers/ubiquity.dockitem
+fi

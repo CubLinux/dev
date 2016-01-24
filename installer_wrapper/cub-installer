@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Install wrapper script for Cub Linux
+# Version 2.1
+# Simple wrapper with license agreement before ubiquity installer starts
+# Copyright RichJack, 2015
+# contact@cublinux.com
+# Licensed under GPL v3
+
+cat /usr/local/share/doc/cub-terms.txt | yad --text-info --title="System Install" \
+--text='<span font_weight="bold">Please read the Cub Linux Terms and Conditions.</span>\n\nCub Linux and GNU/Linux are released under the open source, General Public License (GPL). By using and/or installing Cub Linux you implicitly accept the license terms of any non-GPL bundled software including Adobe Flash®. Before you install Cub Linux you must agree to the following terms which can also be found online:\n<a href="https://cublinux.com/legal/">https://cublinux.com/legal/</a>:\n' \
+--window-icon=ubiquity --image=ubiquity --image-on-top --width=530 --height=500 --center --class=ubiquity --name=ubiquity \
+--button="I do not agree:1" --button="I agree:0"
+
+terms=$?
+if [[ "$terms" != "0" ]]; then
+	exit 1
+fi
+
+sh -c 'ubiquity gtk_ui'
+
+exit 0
+
