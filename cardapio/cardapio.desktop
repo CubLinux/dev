@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=cardapio show-near-mouse
+Name=Applications Menu
+Icon=chromium-app-list-old
+#NoDisplay=true
+#Hidden=true
+X-Ayatana-Desktop-Shortcuts=Properties;
+Categories=Utility;
+
+[Properties Shortcut Group]
+Name=Menu Properties
+Exec=cardapio options
+TargetEnvironment=Unity
