@@ -1,0 +1,19 @@
+#!/bin/bash
+
+function setwallpaper (){
+	nitrogen --set-scaled --save $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
+}
+
+mime=$(mimetype -b "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS")
+
+case $mime in
+	"image/jpeg" ) setwallpaper ;;
+	"image/png" ) setwallpaper ;;
+	"image/x-apple-ios-png" ) setwallpaper ;;
+	"image/bmp" ) setwallpaper ;;
+	"image/gif" ) setwallpaper ;;
+	*) exit 0 ;;
+esac
+
+ 
+

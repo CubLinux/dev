@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Determine the path
+if [ -e -n $1 ]; then
+obj="$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
+else
+base="`echo $NAUTILUS_SCRIPT_CURRENT_URI | cut -d'/' -f3- | sed 's/%20/ /g'`"
+obj="$base/${1##*/}"
+fi
+
+# Launch in L3afpad
+l3afpad "$obj"
+
+exit 0
