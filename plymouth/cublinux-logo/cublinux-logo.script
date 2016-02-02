@@ -1,4 +1,4 @@
-#  cub-logo.script - boot splash plugin
+#  cublinux-logo.script - boot splash plugin
 # 
 #  Copyright (C) 2009 Canonical Ltd.
 # 
@@ -170,7 +170,7 @@ fun StringToInteger (str) {
 Window.SetBackgroundTopColor (1, 1, 1);     # Nice colour on top of the screen fading to
 Window.SetBackgroundBottomColor (1, 1, 1);  # an equally nice colour on the bottom
 
-logo.image = Image ("cub_logo.png"); # "special://logo" is a special keyword which finds the logo image
+logo.image = Image ("cublinux_logo.png"); # "special://logo" is a special keyword which finds the logo image
 logo.sprite = Sprite ();
 logo.sprite.SetImage (logo.image);
 logo.width = logo.image.GetWidth ();
