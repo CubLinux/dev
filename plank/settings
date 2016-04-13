@@ -21,7 +21,7 @@ Position=3
 #The dock's position offset from center (in percent).
 Offset=0
 #The name of the dock's theme to use.
-Theme=Cub
+Theme=cublinux
 #The alignment for the dock on the monitor's edge.  If 0, panel-mode.  If 1, left-aligned.  If 2, right-aligned.  If 3, centered.
 Alignment=1
 #The alignment of the items in this dock if panel-mode is used.  If 1, left-aligned.  If 2, right-aligned.  If 3, centered.
