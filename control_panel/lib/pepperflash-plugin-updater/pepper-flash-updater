@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Cron job updates to pepper flash player
-# The pepperflashplugin script only does something if an update is available
-# So it is safe to put this in /etc/cron.daily
-
-update-pepperflashplugin-nonfree --install

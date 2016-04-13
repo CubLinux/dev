@@ -1,6 +1,6 @@
 #!/bin/bash
 # Simple script to enable autologin in lightdm
-# Copyright (C) RichJack 2015
+# Copyright (C) RichJack 2016
 # Free to distribute under the terms of the GPL v3.
 
 # Check running as root
@@ -24,16 +24,16 @@ ret=$?
 
 if [[ $ret -eq 2 ]]; then
     echo "[SeatDefaults]
-#autologin-user=" > /etc/lightdm/lightdm.conf.d/10-cub.conf
+#autologin-user=" > /etc/lightdm/lightdm.conf.d/10-cublinux.conf
     if [ -f /etc/lightdm/lightdm.conf ]; then
- 	mv /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
+		mv /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
     fi
     exit 0
 fi
 
 if [[ -n $autologin ]]; then
     echo "[SeatDefaults]
-autologin-user=$autologin" > /etc/lightdm/lightdm.conf.d/10-cub.conf
+autologin-user=$autologin" > /etc/lightdm/lightdm.conf.d/10-cublinux.conf
     if [ -f /etc/lightdm/lightdm.conf ]; then
  	mv /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
     fi

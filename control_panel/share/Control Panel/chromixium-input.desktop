@@ -2,10 +2,10 @@
 Version=1.0
 Type=Application
 Terminal=false
-Exec=chromixium-input
+Exec=cub-input
 Name=Keyboard, mouse & touchpad settings
 Comment=Configure the keyboard, mouse, and touchpad
 Icon=input-mouse
-StartupWMClass=chromixium-input
+StartupWMClass=cub-input
 Categories=GTK;Settings;HardwareSettings;
 
